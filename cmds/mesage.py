@@ -21,6 +21,8 @@ class mesage(Cog_Extension):
         if msg.content=="早安" and msg.author != self.bot.user :
             rely=await msg.reply("早安 你好")
             await rely.add_reaction("☀")
+        if msg.content=="..." and msg.author != self.bot.user :
+            await msg.reply("https://i.imgur.com/ECXre3J.jpg")
             
         if msg.content=="goodmorning" and msg.author != self.bot.user :
             rely=await msg.reply("早安 你好")
@@ -45,12 +47,12 @@ class mesage(Cog_Extension):
             await rely.add_reaction("🥳")
             
         if "你好"in (" " +msg.content+ " ") and msg.author != self.bot.user :
-            await msg.reply("你好 ")
-            await msg.channel.send("https://i.imgur.com/Yb4jLsa.gifv")
-            
+            rely=await msg.reply("你好")
+            await rely.add_reaction("👋")      
         if msg.content=="hi" and msg.author != self.bot.user :
-            await msg.reply("你好")
-            await msg.channel.send("https://i.imgur.com/Yb4jLsa.gifv")
+          rely=await msg.reply("你好")
+          await rely.add_reaction("👋")
+
             
         if "驚訝"in (" " +msg.content+ " ") and msg.author != self.bot.user :
             await msg.reply("https://i.imgur.com/vyQ6wFr.mp4")

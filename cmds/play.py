@@ -76,7 +76,7 @@ class mesage(Cog_Extension):
                 dt = dt1.astimezone(timezone(timedelta(hours=8))) # 轉換時區 -> 東八區
                 embed=discord.Embed(title="猜數字遊戲", description="超過100,格式錯誤!請輸入數字範圍1~100", color=0xffffe8, timestamp=dt) 
                 embed.set_thumbnail(url="https://i.imgur.com/97olOK4.jpg")
-                embed.set_footer(text=f"還剩下{time}次機會", icon_url=jdata["bot_head_url"])
+                embed.set_footer(text=f"還剩下{time-1}次機會", icon_url=jdata["bot_head_url"])
                 await ctx.send(embed=embed, mention_author=False)
 
             
@@ -86,7 +86,7 @@ class mesage(Cog_Extension):
                 dt = dt1.astimezone(timezone(timedelta(hours=8))) # 轉換時區 -> 東八區
                 embed=discord.Embed(title="猜數字遊戲", description=f"{ctx.author.name}", color=0xffffe8, timestamp=dt) 
                 embed.set_thumbnail(url="https://i.imgur.com/8BtJsXc.jpg")
-                embed.set_footer(text=f"還剩下{time}次機會", icon_url=jdata["bot_head_url"])
+                embed.set_footer(text=f"還剩下{time-1}次機會", icon_url=jdata["bot_head_url"])
                 embed.add_field(name=f"比 {lowernumber}大，比 {highernumber} 小", value="祝猜對", inline=False)
                 await ctx.send(embed=embed, mention_author=False)
             
@@ -96,7 +96,7 @@ class mesage(Cog_Extension):
                 dt = dt1.astimezone(timezone(timedelta(hours=8))) # 轉換時區 -> 東八區
                 embed=discord.Embed(title="猜數字遊戲", description=f"{ctx.author.name}", color=0xffffe8, timestamp=dt) 
                 embed.set_thumbnail(url="https://i.imgur.com/8BtJsXc.jpg")
-                embed.set_footer(text=f"還剩下{time}次機會", icon_url=jdata["bot_head_url"])
+                embed.set_footer(text=f"還剩下{time-1}次機會", icon_url=jdata["bot_head_url"])
                 embed.add_field(name=f"比 {lowernumber}大，比 {highernumber} 小", value="祝猜對", inline=False)
                 await ctx.send(embed=embed, mention_author=False)
             
@@ -217,6 +217,8 @@ class mesage(Cog_Extension):
         embed.add_field(name="%ship", value="匹配程度(例:%ship <member1> <member2>)", inline=False)
         embed.add_field(name="%draw", value="抽籤(%draw <內容>)", inline=False)
         embed.add_field(name="%drawall", value="抽籤(含不在線成員)(%draw <內容>)", inline=False)
+        embed.add_field(name="%guess", value="猜數字", inline=False)
+        embed.add_field(name="%dice", value="擲骰子", inline=False)
         await ctx.send(embed=embed)
 
     @commands.command()      #角子老虎機
@@ -265,6 +267,17 @@ class mesage(Cog_Extension):
         msg=str(pic[z])
         await ctx.send(msg)
         await ctx.message.add_reaction("👍")
+    @commands.command()
+    async def dice(self,ctx):
+        ans=["https://i.imgur.com/LHJcFAU.png","https://i.imgur.com/RxSQLyC.png","https://i.imgur.com/GOfLr7l.png","https://i.imgur.com/wapxpsS.png","https://i.imgur.com/fhIxN4I.png","https://i.imgur.com/S0pBzSg.png"]
+        dt1 = datetime.utcnow().replace(tzinfo=timezone.utc)
+        dt = dt1.astimezone(timezone(timedelta(hours=8))) # 轉換時區 -> 東八區
+        embed=discord.Embed(title="骰子點數", description=f"由{ctx.author.name}擲骰子", color=0xffffe8, timestamp=dt) 
+        answ=ans[random.randrange(6)]
+        embed.set_image(url=answ)
+        embed.set_footer(text=jdata["bot_name"], icon_url=jdata["bot_head_url"])
+        await ctx.send(embed=embed, mention_author=False)
+
 
 
 
